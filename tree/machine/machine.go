@@ -228,6 +228,7 @@ func (m *machine) CheckMachineStatusByReport(reports map[string]model.Report) er
 				// 	(*machineList)[i].SetProperty(model.HostStatusProp, model.Dead)
 				// 	m.logger.Errorf("machine %s report timeout %f", hostname, time.Now().Sub(reportInfo.UpdateTime).Hours())
 				// } else
+				m.logger.Debugf("hostname:%s reportTime:%s status %s", hostname, reportInfo.UpdateTime, hostStatus)
 				if time.Now().Sub(reportInfo.UpdateTime).Hours() < MachineReportAlive && hostStatus == model.Dead {
 					update = true
 					(*machineList)[i].SetProperty(model.HostStatusProp, model.Online)
